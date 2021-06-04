@@ -6,13 +6,13 @@
         <div class="col-md-6 col-12">
             <div class="card shadow-lg">
                 <div class="card-header">
-                    <h5 class="card-title text-center">Login</h5>
+                    <h5 class="card-text text-center">Login</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{route('login')}}" method="post">
                         @csrf
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="email">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="email" value="{{old('email')}}">
                             <label for="email">Email</label>
                             @error('email')
                             <div class="invalid-feedback">

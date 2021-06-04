@@ -18,8 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('root.index');
 
-Route::get('/my-waifu', [WaifuController::class, 'index'])->name('my-waifu.index');
-Route::get('/my-waifu/create', [WaifuController::class, 'create'])->name('my-waifu.create');
-Route::post('/my-waifu/create', [WaifuController::class, 'store'])->name('my-waifu.store');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/my-waifu', [WaifuController::class, 'index'])->name('my-waifu.index');
+    Route::get('/my-waifu/create', [WaifuController::class, 'create'])->name('my-waifu.create');
+    Route::post('/my-waifu/create', [WaifuController::class, 'store'])->name('my-waifu.store');
+    Route::get('/my-waifu/{waifu:slug}', [WaifuController::class, 'show'])->name('my-waifu.show');
+});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

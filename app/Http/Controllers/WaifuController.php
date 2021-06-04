@@ -73,6 +73,11 @@ class WaifuController extends Controller
     public function show(Waifu $waifu)
     {
         //
+        $data = [
+            'waifu' => $waifu
+        ];
+
+        return view('my-waifu.show', $data);
     }
 
     /**

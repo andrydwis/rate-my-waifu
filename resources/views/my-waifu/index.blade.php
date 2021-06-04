@@ -8,10 +8,12 @@
         @forelse($waifus as $waifu)
         <div class="col-md-4 col-sm-6 col-12">
             <div class="card shadow-lg">
-                <img src="{{ asset('storage/'.$waifu->photo) }}" class="card-img-top" alt="">
+                <a href="{{route('my-waifu.show', [$waifu->slug])}}">
+                    <img src="{{ asset('storage/'.$waifu->photo) }}" class="card-img-top" alt="">
+                </a>
                 <div class="card-body">
                     <span class="badge rounded-pill bg-secondary">{{$waifu->origin}}</span>
-                    <h5 class="card-text">{{$waifu->name}}</h5>
+                    <h5 class="card-title"><a href="{{route('my-waifu.show', [$waifu->slug])}}" style="text-decoration: none;">{{$waifu->name}}</a></h5>
                     <p class="lead">{{Illuminate\Support\Str::limit($waifu->description, 20)}}</p>
                     <div class="d-flex justify-content-evenly">
                         <p><i class="fas fa-heart"></i> 456565</p>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-100">
 
 <head>
     <!-- Required meta tags -->
@@ -14,7 +14,7 @@
     <title>{{config('app.name')}}</title>
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
     @include('layouts.navbar')
     @yield('content')
     <div class="mb-5"></div>

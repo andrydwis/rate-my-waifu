@@ -12,7 +12,7 @@
                     <form action="{{route('register')}}" method="post">
                         @csrf
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="email">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="name" value="{{old('name')}}">
                             <label for="name">Name</label>
                             @error('name')
                             <div class="invalid-feedback">
@@ -21,7 +21,7 @@
                             @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="email">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="email" value="{{old('email')}}>
                             <label for="email">Email</label>
                             @error('email')
                             <div class="invalid-feedback">

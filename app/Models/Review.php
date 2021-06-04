@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Waifu extends Model
+class Review extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'name',
-        'slug',
-        'birthdate',
-        'origin',
-        'description'
+        'waifu_id',
+        'content'
     ];
 
     public function user()
@@ -23,8 +20,8 @@ class Waifu extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function reviews()
+    public function waifu()
     {
-        return $this->hasMany(Review::class);
+        return $this->belongsTo(Waifu::class);
     }
 }

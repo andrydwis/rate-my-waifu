@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use App\Models\Waifu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class MyWaifuController extends Controller
     {
         //
         $data = [
-            'waifus' => Waifu::where('user_id', Auth::user()->id)->get()
+            'waifus' => Waifu::with('reviews')->where('user_id', Auth::user()->id)->orderBy('name', 'asc')->cursorPaginate(10)
         ];
 
         return view('my-waifu.index', $data);
@@ -75,7 +76,9 @@ class MyWaifuController extends Controller
     {
         //
         $data = [
-            'waifu' => $waifu
+            'waifu' => $waifu,
+            'reviews' => Review::with('user')->where('waifu_id', $waifu->id)->orderBy('id', 'desc')->cursorPaginate(5),
+            'reviews_count' => Review::where('waifu_id', $waifu->id)->get()->count()
         ];
 
         return view('my-waifu.show', $data);

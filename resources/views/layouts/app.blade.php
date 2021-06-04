@@ -16,6 +16,7 @@
 
 <body class="d-flex flex-column h-100">
     @include('layouts.navbar')
+    <div class="mb-5"></div>
     @yield('content')
     <div class="mb-5"></div>
     @include('layouts.footer')

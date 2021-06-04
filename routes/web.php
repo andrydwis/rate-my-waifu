@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\MyWaifuController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\WaifuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +28,13 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/my-waifu/{waifu:slug}', [MyWaifuController::class, 'destroy'])->name('my-waifu.destroy');
     Route::get('/my-waifu/{waifu:slug}/edit', [MyWaifuController::class, 'edit'])->name('my-waifu.edit');
     Route::patch('/my-waifu/{waifu:slug}/edit', [MyWaifuController::class, 'update'])->name('my-waifu.update');
+
+    Route::get('/waifu', [WaifuController::class, 'index'])->name('waifu.index');
+    Route::get('/waifu/random', [WaifuController::class, 'random'])->name('waifu.random');
+    Route::get('/waifu/{waifu:slug}', [WaifuController::class, 'show'])->name('waifu.show');
+
+    Route::post('/review', [ReviewController::class, 'store'])->name('review.store');
+    Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->name('review.destroy');
 });
 
 require __DIR__ . '/auth.php';

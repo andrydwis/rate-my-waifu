@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar  navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Rate My Waifu</a>
+        <a class="navbar-brand" href="#">RMW</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -13,18 +13,21 @@
                     <a class="nav-link" href="{{route('my-waifu.index')}}">My Waifu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Waifu List</a>
+                    <a class="nav-link" href="{{route('waifu.index')}}">Waifu List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('waifu.random')}}">Random</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
                 </li>
             </ul>
             @guest
-            <a href="{{route('login')}}" class="btn btn-outline-primary">Login</a>
+            <a href="{{route('login')}}" class="btn btn-outline-light">Login</a>
             @else
             <form class="d-flex" action="{{route('logout')}}" method="post">
                 @csrf
-                <button class="btn btn-outline-primary" type="submit">Logout</button>
+                <button class="btn btn-outline-light" type="submit">Logout</button>
             </form>
             @endguest
         </div>

@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Waifu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class WaifuController extends Controller
+class MyWaifuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -89,6 +90,11 @@ class WaifuController extends Controller
     public function edit(Waifu $waifu)
     {
         //
+        $data = [
+            'waifu' => $waifu
+        ];
+
+        return view('my-waifu.edit', $data);
     }
 
     /**
@@ -101,6 +107,26 @@ class WaifuController extends Controller
     public function update(Request $request, Waifu $waifu)
     {
         //
+        $request->validate([
+            'name' => ['required'],
+            'origin' => ['required'],
+            'photo' => ['image', 'max:2048'],
+            'description' => ['required']
+        ]);
+
+        $waifu->user_id = Auth::user()->id;
+        $waifu->name = $request->name;
+        $waifu->slug = Str::slug($request->name) . '-' . Str::random(5);
+        $waifu->birthdate = $request->birthdate;
+        if($request->has('photo')){
+            Storage::delete($waifu->photo);
+            $waifu->photo = $request->file('photo')->store('waifus');
+        }
+        $waifu->origin = $request->origin;
+        $waifu->description = $request->description;
+        $waifu->save();
+
+        return redirect()->route('my-waifu.show', [$waifu->slug]);
     }
 
     /**
@@ -112,5 +138,9 @@ class WaifuController extends Controller
     public function destroy(Waifu $waifu)
     {
         //
+        Storage::delete($waifu->photo);
+        $waifu->delete();
+
+        return redirect()->route('my-waifu.index');
     }
 }

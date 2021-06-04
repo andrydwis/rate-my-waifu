@@ -3,7 +3,15 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-4 col-sm-6 col-12">
-            <img src="{{ asset('storage/'.$waifu->photo) }}" class="img-thumbnail" alt="">
+            <div class="card shadow-lg">
+                <img src="{{ asset('storage/'.$waifu->photo) }}" class="card-img-top" alt="">
+                <div class="card-footer d-flex justify-content-center">
+                    <div class="btn-group" role="group">
+                        <a href="{{route('my-waifu.edit', [$waifu->slug])}}" class="btn btn-outline-primary">Edit</a>
+                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-8 col-sm-6 col-12">
             <div class="card shadow-lg mb-5">
@@ -28,8 +36,30 @@
                     <h5 class="card-text">Review</h5>
                 </div>
                 <div class="card-body">
-                   
+
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Waifu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete your waifu ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form action="{{route('my-waifu.destroy', [$waifu->slug])}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                </form>
             </div>
         </div>
     </div>

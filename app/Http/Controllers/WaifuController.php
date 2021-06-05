@@ -61,7 +61,7 @@ class WaifuController extends Controller
             'reviews_count' => Review::where('waifu_id', $waifu->id)->get()->count(),
             'love_count' => Rate::where('waifu_id', $waifu->id)->where('type', 'love')->get()->count(),
             'meh_count' => Rate::where('waifu_id', $waifu->id)->where('type', 'meh')->get()->count(),
-            'user_rate' => Rate::where('waifu_id', $waifu->id)->where('user_id', Auth::user()->id)->first()
+            'user_rate' => Rate::where('waifu_id', $waifu->id)->where('user_id', Auth::user()->id ?? '')->first()
         ];
 
         return view('waifu.show', $data);

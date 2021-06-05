@@ -18,6 +18,7 @@ class CreateWaifusTable extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('name');
             $table->string('slug')->unique();
+            $table->enum('type', ['sfw', 'nsfw']);
             $table->string('photo');
             $table->date('birthdate')->nullable();
             $table->string('origin');

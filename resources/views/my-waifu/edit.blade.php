@@ -5,6 +5,10 @@
         <div class="col-md-3 col-12"></div>
         <div class="col-md-6 col-12">
             <div class="card shadow-lg">
+                <img src="{{$waifu->photo}}" class="card-img-top" alt="">
+                <div class="card-footer"></div>
+            </div>
+            <div class="card shadow-lg">
                 <div class="card-header">
                     <a href="{{route('my-waifu.index')}}" class="btn btn-primary">Back</a>
                 </div>
@@ -34,15 +38,6 @@
                             <input type="text" class="form-control @error('origin') is-invalid @enderror" id="origin" name="origin" placeholder="origin" value="{{old('origin') ?? $waifu->origin}}">
                             <label for="origin">Origin</label>
                             @error('origin')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="photo" class="form-label">Photo</label>
-                            <input class="form-control @error('photo') is-invalid @enderror" type="file" id="photo" name="photo">
-                            @error('photo')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>

@@ -23,7 +23,7 @@
         <div class="col-md-4 col-sm-6 col-12">
             <div class="card shadow-lg">
                 <a href="{{route('waifu.show', [$waifu->slug])}}">
-                    <img src="{{ asset('storage/'.$waifu->photo) }}" class="card-img-top" alt="">
+                    <img src="{{$waifu->photo}}" class="card-img-top" alt="">
                 </a>
                 <div class="card-body">
                     <span class="badge rounded-pill bg-secondary">{{$waifu->origin}}</span>

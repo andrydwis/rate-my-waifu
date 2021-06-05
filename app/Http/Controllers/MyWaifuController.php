@@ -7,6 +7,7 @@ use App\Models\Review;
 use App\Models\Waifu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -35,7 +36,6 @@ class MyWaifuController extends Controller
     public function create()
     {
         //
-        return view('my-waifu.create');
     }
 
     /**
@@ -50,7 +50,8 @@ class MyWaifuController extends Controller
         $request->validate([
             'name' => ['required'],
             'origin' => ['required'],
-            'photo' => ['required', 'image', 'max:2048'],
+            'type' => ['required'],
+            'photo' => ['required'],
             'description' => ['required']
         ]);
 
@@ -58,8 +59,9 @@ class MyWaifuController extends Controller
         $waifu->user_id = Auth::user()->id;
         $waifu->name = $request->name;
         $waifu->slug = Str::slug($request->name) . '-' . Str::random(5);
+        $waifu->type = $request->type;
         $waifu->birthdate = $request->birthdate;
-        $waifu->photo = $request->file('photo')->store('waifus');
+        $waifu->photo = $request->photo;
         $waifu->origin = $request->origin;
         $waifu->description = $request->description;
         $waifu->save();
@@ -117,7 +119,6 @@ class MyWaifuController extends Controller
         $request->validate([
             'name' => ['required'],
             'origin' => ['required'],
-            'photo' => ['image', 'max:2048'],
             'description' => ['required']
         ]);
 
@@ -125,10 +126,6 @@ class MyWaifuController extends Controller
         $waifu->name = $request->name;
         $waifu->slug = Str::slug($request->name) . '-' . Str::random(5);
         $waifu->birthdate = $request->birthdate;
-        if($request->has('photo')){
-            Storage::delete($waifu->photo);
-            $waifu->photo = $request->file('photo')->store('waifus');
-        }
         $waifu->origin = $request->origin;
         $waifu->description = $request->description;
         $waifu->save();
@@ -145,9 +142,24 @@ class MyWaifuController extends Controller
     public function destroy(Waifu $waifu)
     {
         //
-        Storage::delete($waifu->photo);
         $waifu->delete();
 
         return redirect()->route('my-waifu.index');
+    }
+
+    public function gacha($type)
+    {
+        if($type=='sfw'){
+            $request = Http::get('https://api.waifu.pics/sfw/waifu');
+        }elseif($type=='nsfw'){
+            $request = Http::get('https://api.waifu.pics/nsfw/waifu');
+        }
+
+        $data = [
+            'type' => $type,
+            'photo' => $request->json(['url']),
+        ];
+        
+        return view('my-waifu.gacha', $data);
     }
 }

@@ -30,7 +30,7 @@ Route::get('/waifu/{waifu:slug}', [WaifuController::class, 'show'])->name('waifu
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/my-waifu', [MyWaifuController::class, 'index'])->name('my-waifu.index');
-    Route::get('/my-waifu/create', [MyWaifuController::class, 'create'])->name('my-waifu.create');
+    Route::get('/my-waifu/gacha/{type}', [MyWaifuController::class, 'gacha'])->name('my-waifu.gacha');
     Route::post('/my-waifu/create', [MyWaifuController::class, 'store'])->name('my-waifu.store');
     Route::get('/my-waifu/{waifu:slug}', [MyWaifuController::class, 'show'])->name('my-waifu.show');
     Route::delete('/my-waifu/{waifu:slug}', [MyWaifuController::class, 'destroy'])->name('my-waifu.destroy');

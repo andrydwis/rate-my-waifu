@@ -2,14 +2,14 @@
 @section('content')
 <div class="container">
     @if($waifus->isNotEmpty())
-    <a href="{{route('my-waifu.create')}}" class="btn btn-outline-primary mt-5">Add New Waifu</a>
+    <a href="{{route('my-waifu.gacha', ['sfw'])}}" class="btn btn-outline-primary mt-5">Add New Waifu</a>
     @endif
     <div class="row mt-5">
         @forelse($waifus as $waifu)
         <div class="col-md-4 col-sm-6 col-12">
             <div class="card shadow-lg">
                 <a href="{{route('my-waifu.show', [$waifu->slug])}}">
-                    <img src="{{ asset('storage/'.$waifu->photo) }}" class="card-img-top" alt="">
+                    <img src="{{$waifu->photo}}" class="card-img-top" alt="">
                 </a>
                 <div class="card-body">
                     <span class="badge rounded-pill bg-secondary">{{$waifu->origin}}</span>
@@ -29,7 +29,7 @@
                 <div class="card-body d-flex flex-column align-items-center">
                     <img src="{{asset('img/empty.svg')}}" width="250px" alt="">
                     <p class="lead text-center">You don't have any waifu yet ?</p>
-                    <a href="{{route('my-waifu.create')}}" class="btn btn-outline-primary">Add New Waifu</a>
+                    <a href="{{route('my-waifu.gacha', ['sfw'])}}" class="btn btn-outline-primary">Gacha SFW Waifu</a>
                 </div>
             </div>
         </div>

@@ -4,8 +4,11 @@
     <div class="row mt-5">
         <div class="col-md-4 col-sm-6 col-12">
             <div class="card shadow-lg">
-                <img src="{{ asset('storage/'.$waifu->photo) }}" class="card-img-top" alt="">
+                <img src="{{$waifu->photo}}" class="card-img-top" alt="">
                 <div class="card-footer">
+                    <div class="btn-group" role="group">
+                        <a href="{{$waifu->photo}}" target="_blank" class="btn btn-primary">Download</a>
+                    </div>
                 </div>
             </div>
         </div>

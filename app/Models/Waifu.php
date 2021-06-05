@@ -13,6 +13,7 @@ class Waifu extends Model
         'user_id',
         'name',
         'slug',
+        'type',
         'birthdate',
         'origin',
         'description'

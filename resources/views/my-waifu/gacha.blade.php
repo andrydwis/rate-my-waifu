@@ -1,6 +1,14 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+    <h1>Result</h1>
+    <img src="{{$photo}}" alt="" width="200px">
+    <a href="{{$photo}}" target="_blank" class="btn btn-outline-dark">Just Download</a>
+    <a href="{{route('my-waifu.gacha', ['sfw'])}}" class="btn btn-outline-primary">Gacha Again</a>
+    <button class="btn btn-primary">Claim My Waifu</button>
+
+    <hr>
+
     <div class="row mt-5">
         <div class="col-md-3 col-12"></div>
         <div class="col-md-6 col-12">
@@ -11,6 +19,8 @@
                 <div class="card-body">
                     <form action="{{route('my-waifu.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="type" value="{{$type}}">
+                        <input type="hidden" name="photo" value="{{$photo}}">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="name" value="{{old('name')}}">
                             <label for="name">Name</label>
@@ -33,15 +43,6 @@
                             <input type="text" class="form-control @error('origin') is-invalid @enderror" id="origin" name="origin" placeholder="origin" value="{{old('origin')}}">
                             <label for="origin">Origin</label>
                             @error('origin')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="photo" class="form-label">Photo</label>
-                            <input class="form-control @error('photo') is-invalid @enderror" type="file" id="photo" name="photo">
-                            @error('photo')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>

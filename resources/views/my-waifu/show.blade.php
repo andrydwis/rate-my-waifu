@@ -4,11 +4,12 @@
     <div class="row mt-5">
         <div class="col-md-4 col-sm-6 col-12">
             <div class="card shadow-lg">
-                <img src="{{ asset('storage/'.$waifu->photo) }}" class="card-img-top" alt="">
+                <img src="{{$waifu->photo}}" class="card-img-top" alt="">
                 <div class="card-footer d-flex justify-content-center">
                     <div class="btn-group" role="group">
+                        <a href="{{$waifu->photo}}" target="_blank" class="btn btn-primary">Download</a>
                         <a href="{{route('my-waifu.edit', [$waifu->slug])}}" class="btn btn-outline-primary">Edit</a>
-                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
                     </div>
                 </div>
             </div>

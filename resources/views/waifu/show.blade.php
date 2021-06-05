@@ -84,6 +84,7 @@
                                 <b>{{$review->user->name}}</b> <span class="text-muted"> - {{$review->created_at->diffForHumans()}}</span><br>
                                 <p>{{$review->content}}</p>
                             </div>
+                            @auth
                             @if($review->user_id==auth()->user()->id)
                             <form action="{{route('review.destroy', [$review])}}" method="post">
                                 @csrf
@@ -91,6 +92,7 @@
                                 <button class="btn btn-outline-primary" type="submit">Delete</button>
                             </form>
                             @endif
+                            @endauth
                         </li>
                         @empty
                         <p>No Review Found</p>

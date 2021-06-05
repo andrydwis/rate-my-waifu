@@ -7,6 +7,7 @@ use App\Models\Review;
 use App\Models\Waifu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class WaifuController extends Controller
 {
@@ -136,5 +137,18 @@ class WaifuController extends Controller
         ];
 
         return view('waifu.search', $data);
+    }
+
+    public function topLove()
+    {
+        $waifus = Waifu::withCount(['rates as loves_count' => function($query){
+            $query->where('type', 'love');
+        }])->orderBy('loves_count', 'desc')->cursorPaginate(10);
+
+        $data = [
+            'waifus' => $waifus
+        ];
+        
+        return view('waifu.top-love', $data);
     }
 }

@@ -4,11 +4,14 @@
     <h1>Result</h1>
     <img src="{{$photo}}" alt="" width="200px">
     <a href="{{$photo}}" target="_blank" class="btn btn-outline-dark">Just Download</a>
+    @if($type=='sfw')
     <a href="{{route('my-waifu.gacha', ['sfw'])}}" class="btn btn-outline-primary">Gacha Again</a>
+    @elseif($type=='nsfw')
+    <a href="{{route('my-waifu.gacha', ['nsfw'])}}" class="btn btn-outline-primary">Gacha Again</a>
+    @endif
     <button class="btn btn-primary">Claim My Waifu</button>
-
+    <a href="{{route('my-waifu.gacha', ['nsfw'])}}" class="btn btn-outline-danger">Psstt...</a>
     <hr>
-
     <div class="row mt-5">
         <div class="col-md-3 col-12"></div>
         <div class="col-md-6 col-12">

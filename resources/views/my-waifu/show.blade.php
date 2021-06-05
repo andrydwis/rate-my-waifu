@@ -18,8 +18,8 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <a href="{{route('my-waifu.index')}}" class="btn btn-primary">Back</a>
                     <div class="btn-group" role="group">
-                        <button class="btn btn-outline-primary"><i class="fas fa-heart"></i> 123</button>
-                        <button class="btn btn-outline-primary"><i class="fas fa-frown"></i> 123</button>
+                        <button class="btn btn-outline-primary"><i class="fas fa-heart"></i> {{$love_count}}</button>
+                        <button class="btn btn-outline-primary"><i class="fas fa-frown"></i> {{$meh_count}}</button>
                         <a href="#review" class="btn btn-outline-primary"><i class="fas fa-comment-alt"></i> {{$reviews_count}}</a>
                     </div>
                 </div>
@@ -30,6 +30,50 @@
                     <p><b>Description:</b></p>
                     <p>{{$waifu->description}}</p>
                     <p class="mt-5"><b>Added By: </b>{{$waifu->user->name}}</p>
+                    <div class="d-flex justify-content-center">
+                        @if(!$user_rate)
+                        <form action="{{route('rate.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
+                            <input type="hidden" name="type" value="love">
+                            <button class="btn btn-outline-primary me-3" type="submit"><i class="fas fa-heart"></i> Love</button>
+                        </form>
+                        <form action="{{route('rate.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
+                            <input type="hidden" name="type" value="meh">
+                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-frown"></i> Meh</button>
+                        </form>
+                        @else
+                        @if($user_rate->type=='love')
+                        <form action="{{route('rate.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
+                            <input type="hidden" name="type" value="love">
+                            <button class="btn btn-primary me-3" type="submit"><i class="fas fa-heart"></i> Love</button>
+                        </form>
+                        <form action="{{route('rate.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
+                            <input type="hidden" name="type" value="meh">
+                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-frown"></i> Meh</button>
+                        </form>
+                        @else
+                        <form action="{{route('rate.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
+                            <input type="hidden" name="type" value="love">
+                            <button class="btn btn-outline-primary me-3" type="submit"><i class="fas fa-heart"></i> Love</button>
+                        </form>
+                        <form action="{{route('rate.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
+                            <input type="hidden" name="type" value="meh">
+                            <button class="btn btn-dark" type="submit"><i class="fas fa-frown"></i> Meh</button>
+                        </form>
+                        @endif
+                        @endif
+                    </div>
                 </div>
             </div>
             <div class="card shadow-lg">

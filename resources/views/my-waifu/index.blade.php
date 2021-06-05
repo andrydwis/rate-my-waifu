@@ -15,8 +15,8 @@
                     <span class="badge rounded-pill bg-secondary">{{$waifu->origin}}</span>
                     <h5 class="card-title"><a href="{{route('my-waifu.show', [$waifu->slug])}}" style="text-decoration: none;">{{$waifu->name}}</a></h5>
                     <div class="d-flex justify-content-evenly">
-                        <p><i class="fas fa-heart"></i> 456565</p>
-                        <p><i class="fas fa-frown"></i> 456565</p>
+                        <p><i class="fas fa-heart"></i> {{$waifu->rates->where('type', 'love')->count()}}</p>
+                        <p><i class="fas fa-frown"></i> {{$waifu->rates->where('type', 'meh')->count()}}</p>
                         <p><i class="fas fa-comment-alt"></i> {{$waifu->reviews->count()}}</p>
                     </div>
                 </div>

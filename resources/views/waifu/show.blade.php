@@ -14,18 +14,62 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <a href="{{route('waifu.index')}}" class="btn btn-primary">Back</a>
                     <div class="btn-group" role="group">
-                        <button class="btn btn-outline-primary"><i class="fas fa-heart"></i> 123</button>
-                        <button class="btn btn-outline-primary"><i class="fas fa-frown"></i> 123</button>
+                        <button class="btn btn-outline-primary"><i class="fas fa-heart"></i> {{$love_count}}</button>
+                        <button class="btn btn-outline-primary"><i class="fas fa-frown"></i> {{$meh_count}}</button>
                         <a href="#review" class="btn btn-outline-primary"><i class="fas fa-comment-alt"></i> {{$reviews_count}}</a>
                     </div>
                 </div>
                 <div class="card-body">
-                    <p class="lead"><b>Name: </b> {{$waifu->name}}</p>
-                    <p class="lead"><b>Birthdate: </b>{{Carbon\Carbon::parse($waifu->birthdate)->format('M d, Y')}}</p>
-                    <p class="lead"><b>Origin: </b>{{$waifu->origin}}</p>
-                    <p class="lead"><b>Description:</b></p>
-                    <p class="lead">{{$waifu->description}}</p>
-                    <p class="lead mt-5"><b>Added By: </b>{{$waifu->user->name}}</p>
+                    <p><b>Name: </b> {{$waifu->name}}</p>
+                    <p><b>Birthdate: </b>{{Carbon\Carbon::parse($waifu->birthdate)->format('M d, Y')}}</p>
+                    <p><b>Origin: </b>{{$waifu->origin}}</p>
+                    <p><b>Description:</b></p>
+                    <p>{{$waifu->description}}</p>
+                    <p class="mt-5"><b>Added By: </b>{{$waifu->user->name}}</p>
+                    <div class="d-flex justify-content-center">
+                        @if(!$user_rate)
+                        <form action="{{route('rate.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
+                            <input type="hidden" name="type" value="love">
+                            <button class="btn btn-outline-primary me-3" type="submit"><i class="fas fa-heart"></i> Love</button>
+                        </form>
+                        <form action="{{route('rate.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
+                            <input type="hidden" name="type" value="meh">
+                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-frown"></i> Meh</button>
+                        </form>
+                        @else
+                        @if($user_rate->type=='love')
+                        <form action="{{route('rate.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
+                            <input type="hidden" name="type" value="love">
+                            <button class="btn btn-primary me-3" type="submit"><i class="fas fa-heart"></i> Love</button>
+                        </form>
+                        <form action="{{route('rate.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
+                            <input type="hidden" name="type" value="meh">
+                            <button class="btn btn-outline-dark" type="submit"><i class="fas fa-frown"></i> Meh</button>
+                        </form>
+                        @else
+                        <form action="{{route('rate.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
+                            <input type="hidden" name="type" value="love">
+                            <button class="btn btn-outline-primary me-3" type="submit"><i class="fas fa-heart"></i> Love</button>
+                        </form>
+                        <form action="{{route('rate.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
+                            <input type="hidden" name="type" value="meh">
+                            <button class="btn btn-dark" type="submit"><i class="fas fa-frown"></i> Meh</button>
+                        </form>
+                        @endif
+                        @endif
+                    </div>
                 </div>
             </div>
             <div class="card shadow-lg">
@@ -37,9 +81,8 @@
                         @forelse($reviews as $review)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>
-                                <b>{{$review->user->name}}</b><br>
-                                <p class="text-sm text-muted">{{$review->created_at->diffForHumans()}}</p>
-                                <p class="lead">{{$review->content}}</p>
+                                <b>{{$review->user->name}}</b> <span class="text-muted"> - {{$review->created_at->diffForHumans()}}</span><br>
+                                <p>{{$review->content}}</p>
                             </div>
                             @if($review->user_id==auth()->user()->id)
                             <form action="{{route('review.destroy', [$review])}}" method="post">
@@ -50,7 +93,7 @@
                             @endif
                         </li>
                         @empty
-                        <p class="lead">No Review Found</p>
+                        <p>No Review Found</p>
                         @endforelse
                     </ul>
                     <div class="d-flex justify-content-center mt-5">

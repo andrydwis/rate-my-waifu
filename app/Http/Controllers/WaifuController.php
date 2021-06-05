@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rate;
 use App\Models\Review;
 use App\Models\Waifu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WaifuController extends Controller
 {
@@ -17,7 +19,7 @@ class WaifuController extends Controller
     {
         //
         $data = [
-            'waifus' => Waifu::with('reviews')->orderBy('name', 'asc')->cursorPaginate(10)
+            'waifus' => Waifu::with('reviews', 'rates')->orderBy('name', 'asc')->cursorPaginate(10)
         ];
 
         return view('waifu.index', $data);
@@ -56,7 +58,10 @@ class WaifuController extends Controller
         $data = [
             'waifu' => $waifu,
             'reviews' => Review::with('user')->where('waifu_id', $waifu->id)->orderBy('id', 'desc')->cursorPaginate(5),
-            'reviews_count' => Review::where('waifu_id', $waifu->id)->get()->count()
+            'reviews_count' => Review::where('waifu_id', $waifu->id)->get()->count(),
+            'love_count' => Rate::where('waifu_id', $waifu->id)->where('type', 'love')->get()->count(),
+            'meh_count' => Rate::where('waifu_id', $waifu->id)->where('type', 'meh')->get()->count(),
+            'user_rate' => Rate::where('waifu_id', $waifu->id)->where('user_id', Auth::user()->id)->first()
         ];
 
         return view('waifu.show', $data);
@@ -101,5 +106,24 @@ class WaifuController extends Controller
         $waifu = Waifu::get()->random(1);
 
         return redirect()->route('waifu.show', [$waifu[0]->slug]);
+    }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'keyword' => ['required']
+        ]);
+
+        return redirect()->route('waifu.result', [$request->keyword]);
+    }
+
+    public function result($keyword)
+    {
+        $data = [
+            'waifus' => Waifu::with('reviews', 'rates')->where('name', 'like', '%' . $keyword . '%')->orderBy('name', 'asc')->cursorPaginate(1),
+            'keyword' => $keyword
+        ];
+
+        return view('waifu.search', $data);
     }
 }

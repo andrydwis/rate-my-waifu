@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MyWaifuController;
+use App\Http\Controllers\RateController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WaifuController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('root.index');
 
+Route::get('/waifu', [WaifuController::class, 'index'])->name('waifu.index');
+Route::get('/waifu/random', [WaifuController::class, 'random'])->name('waifu.random');
+Route::post('/waifu/search', [WaifuController::class, 'search'])->name('waifu.search');
+Route::get('/waifu/search/{keyword}', [WaifuController::class, 'result'])->name('waifu.result');
+Route::get('/waifu/{waifu:slug}', [WaifuController::class, 'show'])->name('waifu.show');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/my-waifu', [MyWaifuController::class, 'index'])->name('my-waifu.index');
     Route::get('/my-waifu/create', [MyWaifuController::class, 'create'])->name('my-waifu.create');
@@ -29,12 +36,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/my-waifu/{waifu:slug}/edit', [MyWaifuController::class, 'edit'])->name('my-waifu.edit');
     Route::patch('/my-waifu/{waifu:slug}/edit', [MyWaifuController::class, 'update'])->name('my-waifu.update');
 
-    Route::get('/waifu', [WaifuController::class, 'index'])->name('waifu.index');
-    Route::get('/waifu/random', [WaifuController::class, 'random'])->name('waifu.random');
-    Route::get('/waifu/{waifu:slug}', [WaifuController::class, 'show'])->name('waifu.show');
-
     Route::post('/review', [ReviewController::class, 'store'])->name('review.store');
     Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->name('review.destroy');
+
+    Route::post('/rate', [RateController::class, 'store'])->name('rate.store');
 });
 
 require __DIR__ . '/auth.php';

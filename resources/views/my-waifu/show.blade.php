@@ -24,12 +24,12 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <p class="lead"><b>Name: </b> {{$waifu->name}}</p>
-                    <p class="lead"><b>Birthdate: </b>{{Carbon\Carbon::parse($waifu->birthdate)->format('M d, Y')}}</p>
-                    <p class="lead"><b>Origin: </b>{{$waifu->origin}}</p>
-                    <p class="lead"><b>Description:</b></p>
-                    <p class="lead">{{$waifu->description}}</p>
-                    <p class="lead mt-5"><b>Added By: </b>{{$waifu->user->name}}</p>
+                    <p><b>Name: </b> {{$waifu->name}}</p>
+                    <p><b>Birthdate: </b>{{Carbon\Carbon::parse($waifu->birthdate)->format('M d, Y')}}</p>
+                    <p><b>Origin: </b>{{$waifu->origin}}</p>
+                    <p><b>Description:</b></p>
+                    <p>{{$waifu->description}}</p>
+                    <p class="mt-5"><b>Added By: </b>{{$waifu->user->name}}</p>
                 </div>
             </div>
             <div class="card shadow-lg">
@@ -43,7 +43,7 @@
                             <div>
                                 <b>{{$review->user->name}}</b><br>
                                 <p class="text-sm text-muted">{{$review->created_at->diffForHumans()}}</p>
-                                <p class="lead">{{$review->content}}</p>
+                                <p>{{$review->content}}</p>
                             </div>
                             @if($review->user_id==auth()->user()->id)
                             <form action="{{route('review.destroy', [$review])}}" method="post">
@@ -54,7 +54,7 @@
                             @endif
                         </li>
                         @empty
-                        <p class="lead">No Review Found</p>
+                        <p>No Review Found</p>
                         @endforelse
                     </ul>
                     <div class="d-flex justify-content-center mt-5">

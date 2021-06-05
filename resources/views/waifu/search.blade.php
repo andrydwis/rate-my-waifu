@@ -18,6 +18,7 @@
         </div>
     </div>
     <div class="row mt-5">
+        <p class="lead">Search result of {{$keyword}} :</p>
         @forelse($waifus as $waifu)
         <div class="col-md-4 col-sm-6 col-12">
             <div class="card shadow-lg">
@@ -41,7 +42,7 @@
             <div class="card shadow-lg">
                 <div class="card-body d-flex flex-column align-items-center">
                     <img src="{{asset('img/empty.svg')}}" width="250px" alt="">
-                    <p class="lead text-center">Oops, no waifu found in here. What happen ?</p>
+                    <p class="lead text-center">Oops, no waifu found in here. are you sure right spelling her name ?</p>
                 </div>
             </div>
         </div>

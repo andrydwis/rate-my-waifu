@@ -55,14 +55,25 @@ class WaifuController extends Controller
     public function show(Waifu $waifu)
     {
         //
-        $data = [
-            'waifu' => $waifu,
-            'reviews' => Review::with('user')->where('waifu_id', $waifu->id)->orderBy('id', 'desc')->cursorPaginate(5),
-            'reviews_count' => Review::where('waifu_id', $waifu->id)->get()->count(),
-            'love_count' => Rate::where('waifu_id', $waifu->id)->where('type', 'love')->get()->count(),
-            'meh_count' => Rate::where('waifu_id', $waifu->id)->where('type', 'meh')->get()->count(),
-            'user_rate' => Rate::where('waifu_id', $waifu->id)->where('user_id', Auth::user()->id ?? '')->first()
-        ];
+        if (Auth::check())
+            $data = [
+                'waifu' => $waifu,
+                'reviews' => Review::with('user')->where('waifu_id', $waifu->id)->orderBy('id', 'desc')->cursorPaginate(5),
+                'reviews_count' => Review::where('waifu_id', $waifu->id)->get()->count(),
+                'love_count' => Rate::where('waifu_id', $waifu->id)->where('type', 'love')->get()->count(),
+                'meh_count' => Rate::where('waifu_id', $waifu->id)->where('type', 'meh')->get()->count(),
+                'user_rate' => Rate::where('waifu_id', $waifu->id)->where('user_id', Auth::user()->id)->first()
+            ];
+        else {
+            $data = [
+                'waifu' => $waifu,
+                'reviews' => Review::with('user')->where('waifu_id', $waifu->id)->orderBy('id', 'desc')->cursorPaginate(5),
+                'reviews_count' => Review::where('waifu_id', $waifu->id)->get()->count(),
+                'love_count' => Rate::where('waifu_id', $waifu->id)->where('type', 'love')->get()->count(),
+                'meh_count' => Rate::where('waifu_id', $waifu->id)->where('type', 'meh')->get()->count(),
+                'user_rate' => null
+            ];
+        }
 
         return view('waifu.show', $data);
     }

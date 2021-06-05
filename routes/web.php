@@ -3,6 +3,7 @@
 use App\Http\Controllers\MyWaifuController;
 use App\Http\Controllers\RateController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\RootController;
 use App\Http\Controllers\WaifuController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('root.index');
+Route::get('/', [RootController::class, 'index'])->name('root.index');
+
+Route::get('/about', [RootController::class, 'about'])->name('root.about');
 
 Route::get('/waifu', [WaifuController::class, 'index'])->name('waifu.index');
 Route::get('/waifu/random', [WaifuController::class, 'random'])->name('waifu.random');

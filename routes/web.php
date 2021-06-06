@@ -25,6 +25,7 @@ Route::get('/about', [RootController::class, 'about'])->name('root.about');
 Route::get('/waifu', [WaifuController::class, 'index'])->name('waifu.index');
 Route::get('/waifu/random', [WaifuController::class, 'random'])->name('waifu.random');
 Route::get('/waifu/top-love', [WaifuController::class, 'topLove'])->name('waifu.top-love');
+Route::get('/waifu/top-meh', [WaifuController::class, 'topMeh'])->name('waifu.top-meh');
 Route::post('/waifu/search', [WaifuController::class, 'search'])->name('waifu.search');
 Route::get('/waifu/search/{keyword}', [WaifuController::class, 'result'])->name('waifu.result');
 Route::get('/waifu/{waifu:slug}', [WaifuController::class, 'show'])->name('waifu.show');

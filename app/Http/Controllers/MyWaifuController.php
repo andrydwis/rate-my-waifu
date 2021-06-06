@@ -22,7 +22,7 @@ class MyWaifuController extends Controller
     {
         //
         $data = [
-            'waifus' => Waifu::with('reviews', 'rates')->where('user_id', Auth::user()->id)->orderBy('name', 'asc')->cursorPaginate(10)
+            'waifus' => Waifu::with('reviews', 'rates')->where('user_id', Auth::user()->id)->orderBy('name', 'asc')->simplePaginate(10)
         ];
 
         return view('my-waifu.index', $data);
@@ -80,7 +80,7 @@ class MyWaifuController extends Controller
         //
         $data = [
             'waifu' => $waifu,
-            'reviews' => Review::with('user')->where('waifu_id', $waifu->id)->orderBy('id', 'desc')->cursorPaginate(5),
+            'reviews' => Review::with('user')->where('waifu_id', $waifu->id)->orderBy('id', 'desc')->simplePaginate(5),
             'reviews_count' => Review::where('waifu_id', $waifu->id)->get()->count(),
             'love_count' => Rate::where('waifu_id', $waifu->id)->where('type', 'love')->get()->count(),
             'meh_count' => Rate::where('waifu_id', $waifu->id)->where('type', 'meh')->get()->count(),
@@ -150,9 +150,11 @@ class MyWaifuController extends Controller
     public function gacha($type)
     {
         if($type=='sfw'){
-            $request = Http::get('https://api.waifu.pics/sfw/waifu');
+            $api = collect(['https://api.waifu.pics/sfw/waifu', 'https://api.waifu.pics/sfw/neko'])->random(1)->first();
+            $request = Http::get($api);
         }elseif($type=='nsfw'){
-            $request = Http::get('https://api.waifu.pics/nsfw/waifu');
+            $api = collect(['https://api.waifu.pics/nsfw/waifu', 'https://api.waifu.pics/nsfw/neko'])->random(1)->first();
+            $request = Http::get($api);
         }
 
         $data = [

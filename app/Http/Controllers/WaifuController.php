@@ -131,8 +131,14 @@ class WaifuController extends Controller
 
     public function result($keyword)
     {
+        if (env('DB_CONNECTION') == 'pgsql') {
+            $waifus = Waifu::with('reviews', 'rates')->where('name', 'ilike', '%' . $keyword . '%')->orderBy('name', 'asc')->simplePaginate(1);
+        } else {
+            $waifus = Waifu::with('reviews', 'rates')->where('name', 'like', '%' . $keyword . '%')->orderBy('name', 'asc')->simplePaginate(1);
+        }
+        
         $data = [
-            'waifus' => Waifu::with('reviews', 'rates')->where('name', 'like', '%' . $keyword . '%')->orderBy('name', 'asc')->simplePaginate(1),
+            'waifus' => $waifus,
             'keyword' => $keyword
         ];
 
@@ -141,27 +147,27 @@ class WaifuController extends Controller
 
     public function topLove()
     {
-        $waifus = Waifu::withCount(['rates as love_count' => function($query){
+        $waifus = Waifu::withCount(['rates as love_count' => function ($query) {
             $query->where('type', 'love');
         }])->orderBy('love_count', 'desc')->simplePaginate(10);
 
         $data = [
             'waifus' => $waifus
         ];
-        
+
         return view('waifu.top-love', $data);
     }
 
     public function topMeh()
     {
-        $waifus = Waifu::withCount(['rates as meh_count' => function($query){
+        $waifus = Waifu::withCount(['rates as meh_count' => function ($query) {
             $query->where('type', 'meh');
         }])->orderBy('meh_count', 'desc')->simplePaginate(10);
 
         $data = [
             'waifus' => $waifus
         ];
-        
+
         return view('waifu.top-meh', $data);
     }
 }

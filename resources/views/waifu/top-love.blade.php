@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+<div class="p-5 mb-4" style="background-image: url('/img/banner.jpg'); background-size: cover;">
+    <div class="container-fluid py-5 text-center">
+        <h1 class="display-5 fw-bold text-white">Top Love Waifu</h1>
+    </div>
+</div>
 <div class="container">
     <h1 class="mt-5">Top Love Waifu Rank</h1>
     <div class="list-group">

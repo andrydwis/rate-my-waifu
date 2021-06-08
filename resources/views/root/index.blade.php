@@ -8,7 +8,6 @@
     </div>
 </div>
 <div class="container mt-5">
-
     <div class="row">
         <div class="col">
             <div class="card shadow-lg">
@@ -22,6 +21,28 @@
                 <div class="card-body">
                     <h1 class="text-center">{{$waifu_count}} Wafius</h1>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-5">
+        <div class="card-header">
+            <h5 class="card-text text-center">Anime News</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                @foreach($newss as $news)
+                <div class="col-sm-4 col-12 mb-1">
+                    <div class="card">
+                        <img src="{{$news['urlToImage']}}" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$news['title']}}</h5>
+                            <p class="card-text">{{\Illuminate\Support\Str::words($news['description'], 20)}}</p>
+                            <p class="card-text">{{$news['author']}} - {{\Carbon\Carbon::parse($news['publishedAt'])->diffForHumans()}}</p>
+                            <a href="{{$news['url']}}" class="btn btn-primary">Detail</a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
     </div>

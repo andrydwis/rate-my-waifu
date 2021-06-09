@@ -8,41 +8,55 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-4 col-sm-6 col-12">
-            <div class="card shadow-lg">
+            <div class="card">
                 <img src="{{$waifu->photo}}" class="card-img-top" alt="">
-                <div class="card-footer d-flex justify-content-center">
-                    <div class="btn-group" role="group">
-                        <a href="{{$waifu->photo}}" target="_blank" class="btn btn-primary">Download</a>
-                        <a href="{{route('my-waifu.edit', [$waifu->slug])}}" class="btn btn-outline-primary">Edit</a>
-                        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <div class="btn-group" role="group">
+                            <a href="{{$waifu->photo}}" target="_blank" class="btn btn-dark"><i class="fas fa-arrow-down"></i> Download</a>
+                            <a href="{{route('my-waifu.edit', [$waifu->slug])}}" class="btn btn-outline-dark"><i class="fas fa-pen"></i> Edit</a>
+                            <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash"></i> Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-8 col-sm-6 col-12">
-            <div class="card shadow-lg mb-5">
+            <div class="card mb-5">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <a href="{{route('my-waifu.index')}}" class="btn btn-primary">Back</a>
+                    <a href="{{route('my-waifu.index')}}" class="btn btn-dark">Back</a>
                     <div class="btn-group" role="group">
-                        <button class="btn btn-outline-primary"><i class="fas fa-heart"></i> {{$love_count}}</button>
-                        <button class="btn btn-outline-primary"><i class="fas fa-frown"></i> {{$meh_count}}</button>
-                        <a href="#review" class="btn btn-outline-primary"><i class="fas fa-comment-alt"></i> {{$reviews_count}}</a>
+                        <button class="btn btn-outline-dark"><i class="fas fa-heart"></i> {{$love_count}}</button>
+                        <button class="btn btn-outline-dark"><i class="fas fa-frown"></i> {{$meh_count}}</button>
+                        <a href="#review" class="btn btn-outline-dark"><i class="fas fa-comment-alt"></i> {{$reviews_count}}</a>
                     </div>
                 </div>
                 <div class="card-body">
-                    <p><b>Name: </b> {{$waifu->name}}</p>
-                    <p><b>Birthdate: </b>{{Carbon\Carbon::parse($waifu->birthdate)->format('M d, Y')}}</p>
-                    <p><b>Origin: </b>{{$waifu->origin}}</p>
-                    <p><b>Description:</b></p>
-                    <p>{{$waifu->description}}</p>
-                    <p class="mt-5"><b>Added By: </b>{{$waifu->user->name}}</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <p><b>Name: </b> {{$waifu->name}}</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p><b>Birthdate: </b>{{Carbon\Carbon::parse($waifu->birthdate)->format('M d, Y')}}</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p><b>Origin: </b>{{$waifu->origin}}</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p><b>Description:</b></p>
+                            <p>{{$waifu->description}}</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p><b>Added By: </b>{{$waifu->user->name}}</p>
+                        </li>
+                    </ul>
                     <div class="d-flex justify-content-center">
                         @if(!$user_rate)
                         <form action="{{route('rate.store')}}" method="post">
                             @csrf
                             <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
                             <input type="hidden" name="type" value="love">
-                            <button class="btn btn-outline-primary me-3" type="submit"><i class="fas fa-heart"></i> Love</button>
+                            <button class="btn btn-outline-dark me-3" type="submit"><i class="fas fa-heart"></i> Love</button>
                         </form>
                         <form action="{{route('rate.store')}}" method="post">
                             @csrf
@@ -56,7 +70,7 @@
                             @csrf
                             <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
                             <input type="hidden" name="type" value="love">
-                            <button class="btn btn-primary me-3" type="submit"><i class="fas fa-heart"></i> Love</button>
+                            <button class="btn btn-dark me-3" type="submit"><i class="fas fa-heart"></i> Love</button>
                         </form>
                         <form action="{{route('rate.store')}}" method="post">
                             @csrf
@@ -69,7 +83,7 @@
                             @csrf
                             <input type="hidden" name="waifu_id" value="{{$waifu->id}}">
                             <input type="hidden" name="type" value="love">
-                            <button class="btn btn-outline-primary me-3" type="submit"><i class="fas fa-heart"></i> Love</button>
+                            <button class="btn btn-outline-dark me-3" type="submit"><i class="fas fa-heart"></i> Love</button>
                         </form>
                         <form action="{{route('rate.store')}}" method="post">
                             @csrf
@@ -99,7 +113,7 @@
                             <form action="{{route('review.destroy', [$review])}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-outline-primary" type="submit">Delete</button>
+                                <button class="btn btn-outline-dark" type="submit"><i class="fas fa-trash"></i> Delete</button>
                             </form>
                             @endif
                         </li>
@@ -122,7 +136,7 @@
                             </div>
                             @enderror
                         </div>
-                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <button class="btn btn-dark" type="submit"><i class="fas fa-save"></i> Submit</button>
                     </form>
                 </div>
             </div>
@@ -141,11 +155,11 @@
                 Are you sure to delete your waifu ?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
                 <form action="{{route('my-waifu.destroy', [$waifu->slug])}}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <button type="submit" class="btn btn-dark">Yes</button>
                 </form>
             </div>
         </div>

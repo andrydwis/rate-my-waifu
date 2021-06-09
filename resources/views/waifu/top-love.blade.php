@@ -14,7 +14,7 @@
                 <div class="fw-bold">{{($waifus->currentpage() - 1) * $waifus->perpage() + $loop->index + 1}}. {{$waifu->name}}</div>
                 {{$waifu->origin}}
             </div>
-            <span class="badge bg-primary rounded-pill"><i class="fas fa-heart"></i> {{$waifu->love_count}}</span>
+            <span class="badge bg-dark rounded-pill"><i class="fas fa-heart"></i> {{$waifu->love_count}}</span>
         </a>       
         @endforeach
     </div>

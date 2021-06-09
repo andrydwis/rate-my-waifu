@@ -11,17 +11,18 @@
 
     <!-- Bootstrap CSS -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Alpine -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <!-- Custom CSS -->
     @yield('customCSS')
 
     <title>{{config('app.name')}}</title>
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column bg-dark h-100">
     @include('layouts.navbar')
     <div class="mb-5"></div>
     @yield('content')
-    <div class="mb-5"></div>
     @include('layouts.footer')
     <!-- Bootstrap JS -->
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>

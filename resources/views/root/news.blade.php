@@ -6,42 +6,42 @@
     </div>
 </div>
 <div class="container">
-    <div class="card shadow-lg mt-5">
-        <div class="card-body">
-            <div class="row">
-                @foreach($newss as $news)
-                <div class="col-sm-4 col-12 mb-1">
-                    <div class="card">
-                        <img src="{{$news['urlToImage']}}" onerror="this.onerror=null;this.src='https://source.unsplash.com/random';" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">{{$news['title']}}</h5>
-                            <p class="card-text">{{\Illuminate\Support\Str::words($news['description'], 20)}}</p>
-                            <p class="card-text">{{$news['author'] ?? 'Anonym'}} - {{\Carbon\Carbon::parse($news['publishedAt'])->diffForHumans()}}</p>
-                            <a href="{{$news['url']}}" target="_blank" class="btn btn-primary">Read More</a>
-                        </div>
+
+    <div class="row mt-5">
+        @foreach($newss as $news)
+        <div class="col-sm-4 col-12 d-flex align-items-stretch mb-3">
+            <div class="card">
+                <img src="{{$news['urlToImage']}}" onerror="this.onerror=null;this.src='https://source.unsplash.com/random';" class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{$news['title']}}</h5>
+                    <p class="card-text">{{\Illuminate\Support\Str::words($news['description'], 20)}}</p>
+                    <p class="card-text">{{$news['author'] ?? 'Anonym'}} - {{\Carbon\Carbon::parse($news['publishedAt'])->diffForHumans()}}</p>
+                    <div class="d-grid gap-2">
+                        <a href="{{$news['url']}}" target="_blank" class="btn btn-dark"><i class="fas fa-eye"></i> Read More</a>
                     </div>
                 </div>
-                @endforeach
-            </div>
-            <div class="d-flex justify-content-center">
-                <nav>
-                    <ul class="pagination">
-                        @if($page==1)
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        @else
-                        <li class="page-item">
-                            <a class="page-link" href="{{route('root.news')}}?page={{$page-1}}" tabindex="-1">Previous</a>
-                        </li>
-                        @endif
-                        <li class="page-item">
-                            <a class="page-link" href="{{route('root.news')}}?page={{$page+1}}" tabindex="-1">Next</a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
+        @endforeach
     </div>
+    <div class="d-flex justify-content-center">
+        <nav>
+            <ul class="pagination">
+                @if($page==1)
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                @else
+                <li class="page-item">
+                    <a class="page-link text-dark" href="{{route('root.news')}}?page={{$page-1}}" tabindex="-1">Previous</a>
+                </li>
+                @endif
+                <li class="page-item">
+                    <a class="page-link text-dark" href="{{route('root.news')}}?page={{$page+1}}" tabindex="-1">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
 </div>
 @endsection

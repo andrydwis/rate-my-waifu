@@ -6,13 +6,13 @@
     </div>
 </div>
 <div class="container">
-    <div class="card shadow-lg mt-5">
+    <div class="card">
         <div class="card-body">
             <form action="{{route('waifu.search')}}" method="post">
                 @csrf
                 <div class="input-group">
                     <input type="text" class="form-control @error('keyword') is-invalid @enderror" name="keyword" placeholder="Search Waifu">
-                    <button class="btn btn-outline-primary" type="subit"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-dark" type="subit"><i class="fas fa-search"></i> Search</button>
                     @error('keyword')
                     <div class="invalid-feedback">
                         {{$message}}
@@ -25,17 +25,19 @@
     <div class="row mt-5">
         @forelse($waifus as $waifu)
         <div class="col-md-4 col-sm-6 col-12">
-            <div class="card shadow-lg">
+            <div class="card">
                 <a href="{{route('waifu.show', [$waifu->slug])}}">
-                    <img src="{{$waifu->photo}}" class="card-img-top" alt="">
+                    <img src="{{$waifu->photo}}" class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
+                    <span class="badge rounded-pill bg-dark position-absolute top-0 start-0 m-3">{{$waifu->origin}}</span>
                 </a>
                 <div class="card-body">
-                    <span class="badge rounded-pill bg-secondary">{{$waifu->origin}}</span>
-                    <h5 class="card-title"><a href="{{route('waifu.show', [$waifu->slug])}}" style="text-decoration: none;">{{$waifu->name}}</a></h5>
-                    <div class="d-flex justify-content-evenly">
-                        <p><i class="fas fa-heart"></i> {{$waifu->rates->where('type', 'love')->count()}}</p>
-                        <p><i class="fas fa-frown"></i> {{$waifu->rates->where('type', 'meh')->count()}}</p>
-                        <p><i class="fas fa-comment-alt"></i> {{$waifu->reviews->count()}}</p>
+                    <h5 class="card-title text-dark text-center">{{$waifu->name}}</h5>
+                    <div class="d-grid gap-2">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-outline-dark"><i class="fas fa-heart"></i> {{$waifu->rates->where('type', 'love')->count()}}</button>
+                            <button type="button" class="btn btn-outline-dark"><i class="fas fa-frown"></i> {{$waifu->rates->where('type', 'meh')->count()}}</button>
+                            <button type="button" class="btn btn-outline-dark"><i class="fas fa-comment-alt"></i> {{$waifu->reviews->count()}}</button>
+                        </div>
                     </div>
                 </div>
             </div>

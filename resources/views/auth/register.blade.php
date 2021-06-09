@@ -2,12 +2,11 @@
 @section('content')
 <div class="container">
     <div class="row mt-5">
-        <div class="col-md-3 col-12"></div>
+        <div class="col-md-6 col-12 d-flex justify-content-center align-items-center mb-5">
+            <h1 class="display-5 fw-bold text-white">Register</h1>
+        </div>
         <div class="col-md-6 col-12">
             <div class="card shadow-lg">
-                <div class="card-header">
-                    <h5 class="card-title text-center">Register</h5>
-                </div>
                 <div class="card-body">
                     <form action="{{route('register')}}" method="post">
                         @csrf
@@ -43,14 +42,13 @@
                             <label for="password_confirmation">Password Confirmation</label>
                         </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary" type="submit">Register</button>
-                            <a href="{{route('login')}}" class="btn btn-outline-primary">Login</a>
+                            <button class="btn btn-dark" type="submit"><i class="fas fa-user-plus"></i> Register</button>
+                            <a href="{{route('login')}}" class="btn btn-outline-dark"><i class="fas fa-sign-in-alt"></i> Login</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-12"></div>
     </div>
 </div>
 @endsection

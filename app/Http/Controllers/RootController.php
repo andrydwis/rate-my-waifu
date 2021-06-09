@@ -12,13 +12,9 @@ class RootController extends Controller
     //
     public function index()
     {
-        $request = Http::get('https://newsapi.org/v2/everything?q=anime&language=en&sortBy=publishedAt&apiKey=b494b191e81948608918bdd451b32c2a&pageSize=9&page=1');
-        $respond = $request->json(['articles']);
-
         $data = [
             'user_count' => User::get()->count(),
-            'waifu_count' => Waifu::get()->count(),
-            'newss' => $respond
+            'waifu_count' => Waifu::get()->count()
         ];
 
         return view('root.index', $data);

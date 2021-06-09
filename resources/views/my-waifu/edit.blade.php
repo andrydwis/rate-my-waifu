@@ -9,14 +9,9 @@
     <div class="row mt-5">
         <div class="col-md-3 col-12"></div>
         <div class="col-md-6 col-12">
-            <div class="card shadow-lg">
+            <div class="card">
                 <img src="{{$waifu->photo}}" class="card-img-top" alt="">
-                <div class="card-footer"></div>
-            </div>
-            <div class="card shadow-lg">
-                <div class="card-header">
-                    <a href="{{route('my-waifu.index')}}" class="btn btn-primary">Back</a>
-                </div>
+                <a href="{{route('my-waifu.show', [$waifu->slug])}}" class="btn btn-dark position-absolute top-0 start-0 m-3"><i class="fas fa-arrow-left"></i> Back</a>
                 <div class="card-body">
                     <form action="{{route('my-waifu.update', [$waifu->slug])}}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -58,7 +53,7 @@
                             @enderror
                         </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary" type="submit">Submit</button>
+                            <button class="btn btn-dark" type="submit"><i class="fas fa-save"></i> Submit</button>
                         </div>
                     </form>
                 </div>

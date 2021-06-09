@@ -11,7 +11,7 @@
     @endif
     <div class="row mt-5">
         @forelse($waifus as $waifu)
-        <div class="col-md-4 col-sm-6 col-12">
+        <div class="col-md-4 col-sm-6 col-12 mb-3">
             <div class="card">
                 <a href="{{route('my-waifu.show', [$waifu->slug])}}">
                     <img src="{{$waifu->photo}}" class="card-img-top" alt="" style="height: 200px; object-fit: cover;">

@@ -22,6 +22,7 @@ Route::get('/', [RootController::class, 'index'])->name('root.index');
 Route::get('/anime', [RootController::class, 'anime'])->name('root.anime');
 Route::get('/news', [RootController::class, 'news'])->name('root.news');
 Route::get('/about', [RootController::class, 'about'])->name('root.about');
+Route::get('/statistics', [RootController::class, 'statistics'])->name('root.statistics');
 
 Route::get('/waifu', [WaifuController::class, 'index'])->name('waifu.index');
 Route::get('/waifu/random', [WaifuController::class, 'random'])->name('waifu.random');

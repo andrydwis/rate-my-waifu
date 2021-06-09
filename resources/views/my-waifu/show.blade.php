@@ -50,7 +50,7 @@
                             <p><b>Added By: </b>{{$waifu->user->name}}</p>
                         </li>
                     </ul>
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center mt-3">
                         @if(!$user_rate)
                         <form action="{{route('rate.store')}}" method="post">
                             @csrf

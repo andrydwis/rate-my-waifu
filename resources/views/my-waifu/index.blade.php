@@ -12,7 +12,7 @@
     <div class="row mt-5">
         @forelse($waifus as $waifu)
         <div class="col-md-4 col-sm-6 col-12 mb-3">
-            <div class="card hvr-shrink">
+            <div class="card w-100 hvr-shrink">
                 <a href="{{route('my-waifu.show', [$waifu->slug])}}">
                     <img src="{{$waifu->photo}}" class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
                     <span class="badge rounded-pill bg-dark position-absolute top-0 start-0 m-3">{{$waifu->origin}}</span>

@@ -24,6 +24,19 @@ class RootController extends Controller
         return view('root.index', $data);
     }
 
+    public function news(Request $request){
+        $page = $request->page ?? 1;
+        $request = Http::get('https://newsapi.org/v2/everything?q=anime&language=en&sortBy=publishedAt&apiKey=b494b191e81948608918bdd451b32c2a&pageSize=10&page='.$page);
+        $respond = $request->json(['articles']);
+
+        $data = [
+            'newss' => $respond,
+            'page' => $page
+        ];
+
+        return view('root.news', $data);
+    }
+
     public function about()
     {
         return view('root.about');

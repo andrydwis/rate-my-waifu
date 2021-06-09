@@ -37,8 +37,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$news['title']}}</h5>
                             <p class="card-text">{{\Illuminate\Support\Str::words($news['description'], 20)}}</p>
-                            <p class="card-text">{{$news['author']}} - {{\Carbon\Carbon::parse($news['publishedAt'])->diffForHumans()}}</p>
-                            <a href="{{$news['url']}}" class="btn btn-primary">Detail</a>
+                            <p class="card-text">{{$news['author'] ?? 'Anonym'}} - {{\Carbon\Carbon::parse($news['publishedAt'])->diffForHumans()}}</p>
+                            <a href="{{$news['url']}}" target="_blank" class="btn btn-primary">Read More</a>
                         </div>
                     </div>
                 </div>

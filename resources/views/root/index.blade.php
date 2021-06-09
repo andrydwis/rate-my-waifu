@@ -4,7 +4,7 @@
     <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold text-white">Rate My Waifu</h1>
         <p class="col-md-8 fs-4 text-white">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates, suscipit.</p>
-        <button class="btn btn-light btn-lg" type="button">Register</button>
+        <a href="{{route('register')}}" class="btn btn-light btn-lg" type="button">Register</a>
     </div>
 </div>
 <div class="container mt-5">
@@ -25,15 +25,12 @@
         </div>
     </div>
     <div class="card mt-5">
-        <div class="card-header">
-            <h5 class="card-text text-center">Anime News</h5>
-        </div>
         <div class="card-body">
             <div class="row">
                 @foreach($newss as $news)
                 <div class="col-sm-4 col-12 mb-1">
                     <div class="card">
-                        <img src="{{$news['urlToImage']}}" class="card-img-top" alt="">
+                        <img src="{{$news['urlToImage']}}" onerror="this.onerror=null;this.src='https://source.unsplash.com/random';" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">{{$news['title']}}</h5>
                             <p class="card-text">{{\Illuminate\Support\Str::words($news['description'], 20)}}</p>

@@ -8,19 +8,21 @@
 <div class="container">
     <div class="card shadow-lg mt-5">
         <div class="card-body">
-            <ul class="list-group list-group-flush">
+            <div class="row">
                 @foreach($newss as $news)
-                <li class="list-group-item d-flex flex-column flex-sm-row">
-                    <img src="{{$news['urlToImage']}}" alt="" class="img-thumbnail m-1" style="width: 200px; height:150px; object-fit: cover;">
-                    <div class="f-flex flex-column">
-                        <h5>{{$news['title']}}</h5>
-                        <p>{{$news['author'] ?? 'Anonym'}} - {{\Carbon\Carbon::parse($news['publishedAt'])->diffForHumans()}}</p>
-                        <p>{{\Illuminate\Support\Str::words($news['description'], 20)}}</p>
-                        <p><a href="{{$news['url']}}" target="_blank">Read More</a></p>
+                <div class="col-sm-4 col-12 mb-1">
+                    <div class="card">
+                        <img src="{{$news['urlToImage']}}" onerror="this.onerror=null;this.src='https://source.unsplash.com/random';" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$news['title']}}</h5>
+                            <p class="card-text">{{\Illuminate\Support\Str::words($news['description'], 20)}}</p>
+                            <p class="card-text">{{$news['author'] ?? 'Anonym'}} - {{\Carbon\Carbon::parse($news['publishedAt'])->diffForHumans()}}</p>
+                            <a href="{{$news['url']}}" target="_blank" class="btn btn-primary">Read More</a>
+                        </div>
                     </div>
-                </li>
+                </div>
                 @endforeach
-            </ul>
+            </div>
             <div class="d-flex justify-content-center">
                 <nav>
                     <ul class="pagination">

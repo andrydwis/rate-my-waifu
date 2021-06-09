@@ -15,8 +15,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('waifu.index')}}">Waifu List</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                        Waifu Rank
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{route('waifu.top-love')}}">Top Love Waifu</a></li>
+                        <li><a class="dropdown-item" href="{{route('waifu.top-meh')}}">Top Meh Waifu</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{route('waifu.random')}}">Random Waifu</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('waifu.random')}}">Random</a>
+                    <a class="nav-link" href="{{route('root.news')}}">News</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('root.about')}}">About</a>

@@ -6,13 +6,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                <li class="nav-item">
+                <li class="nav-item hvr-underline-from-center">
                     <a class="nav-link" href="{{route('root.index')}}">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item hvr-underline-from-center">
                     <a class="nav-link" href="{{route('my-waifu.index')}}">My Waifu</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item hvr-underline-from-center">
                     <a class="nav-link" href="{{route('waifu.index')}}">Waifu List</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -28,10 +28,16 @@
                         <li><a class="dropdown-item" href="{{route('waifu.random')}}">Random Waifu</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('root.news')}}">News</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                        Others
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{route('root.anime')}}">Top Anime Season</a></li>
+                        <li><a class="dropdown-item" href="{{route('root.news')}}">News</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item hvr-underline-from-center">
                     <a class="nav-link" href="{{route('root.about')}}">About</a>
                 </li>
             </ul>

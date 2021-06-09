@@ -6,11 +6,10 @@
     </div>
 </div>
 <div class="container">
-
     <div class="row mt-5">
         @foreach($newss as $news)
         <div class="col-sm-4 col-12 d-flex align-items-stretch mb-3">
-            <div class="card">
+            <div class="card hvr-shrink">
                 <img src="{{$news['urlToImage']}}" onerror="this.onerror=null;this.src='https://source.unsplash.com/random';" class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">{{$news['title']}}</h5>
@@ -42,6 +41,5 @@
             </ul>
         </nav>
     </div>
-
 </div>
 @endsection

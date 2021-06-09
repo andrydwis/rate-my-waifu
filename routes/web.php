@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [RootController::class, 'index'])->name('root.index');
+Route::get('/anime', [RootController::class, 'anime'])->name('root.anime');
 Route::get('/news', [RootController::class, 'news'])->name('root.news');
 Route::get('/about', [RootController::class, 'about'])->name('root.about');
 

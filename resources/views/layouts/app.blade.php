@@ -11,6 +11,8 @@
 
     <!-- Bootstrap CSS -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Hover -->
+    <link href="{{asset('css/hover.css')}}" rel="stylesheet">
     <!-- Alpine -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <!-- GFont -->

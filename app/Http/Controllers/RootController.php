@@ -20,6 +20,22 @@ class RootController extends Controller
         return view('root.index', $data);
     }
 
+    public function anime()
+    {
+        $request = Http::get('https://api.jikan.moe/v3/season');
+        $seasonName = $request->json(['season_name']);
+        $seasonYear = $request->json(['season_year']);
+        $animes = $request->json(['anime']);
+        
+        $data = [
+            'season_name' => $seasonName,
+            'season_year' => $seasonYear,
+            'animes' => $animes
+        ];
+
+        return view('root.anime',  $data);
+    }
+
     public function news(Request $request){
         $page = $request->page ?? 1;
         $request = Http::get('https://newsapi.org/v2/everything?q=anime&language=en&sortBy=publishedAt&apiKey=b494b191e81948608918bdd451b32c2a&pageSize=9&page='.$page);
@@ -32,6 +48,7 @@ class RootController extends Controller
 
         return view('root.news', $data);
     }
+    
 
     public function about()
     {

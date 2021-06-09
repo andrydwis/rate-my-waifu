@@ -2,7 +2,7 @@
 @section('content')
 <div class="p-5 mb-4" style="background-image: url('/img/banner.jpg'); background-size: cover;">
     <div class="container-fluid py-5 text-center">
-        <h1 class="display-5 fw-bold text-white">Search Waifu</h1>
+        <h1 class="display-5 text-white pacifico">Search Waifu</h1>
     </div>
 </div>
 <div class="container">
@@ -25,18 +25,20 @@
     <div class="row mt-5">
         <p class="lead text-white">Search result of {{$keyword}} :</p>
         @forelse($waifus as $waifu)
-        <div class="col-md-4 col-sm-6 col-12">
-            <div class="card shadow-lg">
-                <a href="{{route('waifu.show', [$waifu->slug])}}">
-                    <img src="{{$waifu->photo}}" class="card-img-top" alt="">
+        <div class="col-md-4 col-sm-6 col-12 mb-3">
+            <div class="card">
+                <a href="{{route('my-waifu.show', [$waifu->slug])}}">
+                    <img src="{{$waifu->photo}}" class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
+                    <span class="badge rounded-pill bg-dark position-absolute top-0 start-0 m-3">{{$waifu->origin}}</span>
                 </a>
                 <div class="card-body">
-                    <span class="badge rounded-pill bg-secondary">{{$waifu->origin}}</span>
-                    <h5 class="card-title"><a href="{{route('waifu.show', [$waifu->slug])}}" style="text-decoration: none;">{{$waifu->name}}</a></h5>
-                    <div class="d-flex justify-content-evenly">
-                        <p><i class="fas fa-heart"></i> {{$waifu->rates->where('type', 'love')->count()}}</p>
-                        <p><i class="fas fa-frown"></i> {{$waifu->rates->where('type', 'meh')->count()}}</p>
-                        <p><i class="fas fa-comment-alt"></i> {{$waifu->reviews->count()}}</p>
+                    <h5 class="card-title text-dark text-center">{{$waifu->name}}</h5>
+                    <div class="d-grid gap-2">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-outline-dark"><i class="fas fa-heart"></i> {{$waifu->rates->where('type', 'love')->count()}}</button>
+                            <button type="button" class="btn btn-outline-dark"><i class="fas fa-frown"></i> {{$waifu->rates->where('type', 'meh')->count()}}</button>
+                            <button type="button" class="btn btn-outline-dark"><i class="fas fa-comment-alt"></i> {{$waifu->reviews->count()}}</button>
+                        </div>
                     </div>
                 </div>
             </div>

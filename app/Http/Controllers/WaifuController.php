@@ -20,7 +20,7 @@ class WaifuController extends Controller
     {
         //
         $data = [
-            'waifus' => Waifu::with('reviews', 'rates')->orderBy('name', 'asc')->simplePaginate(10)
+            'waifus' => Waifu::with('reviews', 'rates')->where('type', 'sfw')->orderBy('name', 'asc')->simplePaginate(10)
         ];
 
         return view('waifu.index', $data);
@@ -132,9 +132,9 @@ class WaifuController extends Controller
     public function result($keyword)
     {
         if (env('DB_CONNECTION') == 'pgsql') {
-            $waifus = Waifu::with('reviews', 'rates')->where('name', 'ilike', '%' . $keyword . '%')->orderBy('name', 'asc')->simplePaginate(1);
+            $waifus = Waifu::with('reviews', 'rates')->where('name', 'ilike', '%' . $keyword . '%')->where('type', 'sfw')->orderBy('name', 'asc')->simplePaginate(1);
         } else {
-            $waifus = Waifu::with('reviews', 'rates')->where('name', 'like', '%' . $keyword . '%')->orderBy('name', 'asc')->simplePaginate(1);
+            $waifus = Waifu::with('reviews', 'rates')->where('name', 'like', '%' . $keyword . '%')->where('type', 'sfw')->orderBy('name', 'asc')->simplePaginate(1);
         }
         
         $data = [
@@ -149,7 +149,7 @@ class WaifuController extends Controller
     {
         $waifus = Waifu::withCount(['rates as love_count' => function ($query) {
             $query->where('type', 'love');
-        }])->orderBy('love_count', 'desc')->simplePaginate(10);
+        }])->where('type', 'sfw')->orderBy('love_count', 'desc')->simplePaginate(10);
 
         $data = [
             'waifus' => $waifus
@@ -162,7 +162,7 @@ class WaifuController extends Controller
     {
         $waifus = Waifu::withCount(['rates as meh_count' => function ($query) {
             $query->where('type', 'meh');
-        }])->orderBy('meh_count', 'desc')->simplePaginate(10);
+        }])->where('type', 'sfw')->orderBy('meh_count', 'desc')->simplePaginate(10);
 
         $data = [
             'waifus' => $waifus

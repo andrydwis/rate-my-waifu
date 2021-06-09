@@ -45,11 +45,9 @@
         @empty
         <div class="col-md-3 col-12"></div>
         <div class="col-md-6 col-12">
-            <div class="card shadow-lg">
-                <div class="card-body d-flex flex-column align-items-center">
-                    <img src="{{asset('img/empty.svg')}}" width="250px" alt="">
-                    <p class="lead text-center">Oops, no waifu found in here. What happen ?</p>
-                </div>
+            <div class="d-flex flex-column align-items-center">
+                <img src="{{asset('img/empty.svg')}}" width="250px" alt="">
+                <p class="lead text-white">Eh, what happen ?</p>
             </div>
         </div>
         <div class="col-md-3 col-12"></div>

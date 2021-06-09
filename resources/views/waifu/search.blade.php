@@ -12,7 +12,7 @@
                 @csrf
                 <div class="input-group">
                     <input type="text" class="form-control @error('keyword') is-invalid @enderror" name="keyword" placeholder="Search Waifu">
-                    <button class="btn btn-outline-primary" type="subit"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-dark" type="subit"><i class="fas fa-search"></i> Search</button>
                     @error('keyword')
                     <div class="invalid-feedback">
                         {{$message}}
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="row mt-5">
-        <p class="lead">Search result of {{$keyword}} :</p>
+        <p class="lead text-white">Search result of {{$keyword}} :</p>
         @forelse($waifus as $waifu)
         <div class="col-md-4 col-sm-6 col-12">
             <div class="card shadow-lg">
@@ -44,11 +44,9 @@
         @empty
         <div class="col-md-3 col-12"></div>
         <div class="col-md-6 col-12">
-            <div class="card shadow-lg">
-                <div class="card-body d-flex flex-column align-items-center">
-                    <img src="{{asset('img/empty.svg')}}" width="250px" alt="">
-                    <p class="lead text-center">Oops, no waifu found in here. are you sure right spelling her name ?</p>
-                </div>
+            <div class="d-flex flex-column align-items-center">
+                <img src="{{asset('img/empty.svg')}}" width="250px" alt="">
+                <p class="lead text-white">No waifu found, duh.</p>
             </div>
         </div>
         <div class="col-md-3 col-12"></div>

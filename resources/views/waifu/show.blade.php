@@ -7,7 +7,7 @@
 </div>
 <div class="container">
     <div class="row mt-5">
-        <div class="col-md-4 col-sm-6 col-12">
+        <div class="col-md-4 col-sm-6 col-12 mb-5">
             <div class="card">
                 <img src="{{$waifu->photo}}" class="card-img-top" alt="">
                 <div class="card-body">

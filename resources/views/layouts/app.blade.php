@@ -23,6 +23,15 @@
             font-family: 'Pacifico', cursive;
         }
     </style>
+    <!-- Scroll To Top -->
+    <style>
+        .back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+        }
+    </style>
     <!-- Custom CSS -->
     @yield('customCSS')
 
@@ -33,11 +42,34 @@
     @include('layouts.navbar')
     <div class="mb-5"></div>
     @yield('content')
+    <button id="scroll-to-top" class="btn btn-light rounded-circle hvr-float back-to-top" onclick="topFunction()"><i class="fas fa-arrow-up"></i></button>
     @include('layouts.footer')
     <!-- Bootstrap JS -->
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <!-- FA Icon -->
     <script src="https://kit.fontawesome.com/8482c12eb4.js" crossorigin="anonymous"></script>
+    <!-- Scroll To Top -->
+    <script>
+        scrollToTop = document.getElementById("scroll-to-top");
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollToTop.style.display = "block";
+            } else {
+                scrollToTop.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
     <!-- Custom JS -->
     @yield('customJS')
 </body>

@@ -42,7 +42,7 @@
                 </li>
             </ul>
             @guest
-            <a href="{{route('login')}}" class="btn btn-outline-light">Login</a>
+            <a href="{{route('login')}}" class="btn btn-outline-light hvr-shrink">Login</a>
             @else
             <form class="d-flex" action="{{route('logout')}}" method="post">
                 @csrf

@@ -50,17 +50,8 @@ class RootController extends Controller
         return view('root.news', $data);
     }
 
-
     public function about()
     {
         return view('root.about');
-    }
-
-    public function statistics(Request $request)
-    {
-        $ip = $request->getClientIp();
-        $request = Http::get('http://ip-api.com/json/' . $ip);
-        $respond = $request->json();
-        return $respond;
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style="background-image: url('/img/cover.jpg'); background-size: cover;">
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column animate" style="background-image: url('/img/cover.jpg');">
     <div class="p-5 mb-4">
         <div class="container-fluid py-5">
             <h1 class="display-5 text-white pacifico hvr-skew">Rate My Waifu</h1>
@@ -14,4 +14,20 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('customCSS')
+<style>
+    .animate {
+        background-size: cover;
+        background-position: top left;
+        animation: swipe 20s infinite;
+    }
+
+    @keyframes swipe {
+        50% {
+            background-position: center;
+        }
+    }
+</style>
 @endsection

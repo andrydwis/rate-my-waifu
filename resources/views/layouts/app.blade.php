@@ -42,7 +42,7 @@
     @include('layouts.navbar')
     <div class="mb-5"></div>
     @yield('content')
-    <button id="scroll-to-top" class="btn btn-light rounded-circle hvr-float back-to-top" onclick="topFunction()"><i class="fas fa-arrow-up"></i></button>
+    <button id="scroll-to-top" class="btn btn-light border border-2 border-dark hvr-float back-to-top" onclick="topFunction()"><i class="fas fa-arrow-up"></i></button>
     @include('layouts.footer')
     <!-- Bootstrap JS -->
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>

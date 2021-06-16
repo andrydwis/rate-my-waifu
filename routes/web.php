@@ -4,6 +4,7 @@ use App\Http\Controllers\MyWaifuController;
 use App\Http\Controllers\RateController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RootController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\WaifuController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [RootController::class, 'index'])->name('root.index');
+Route::get('/top-couple', [RootController::class, 'topCouple'])->name('root.top-couple');
 Route::get('/anime', [RootController::class, 'anime'])->name('root.anime');
 Route::get('/news', [RootController::class, 'news'])->name('root.news');
 Route::get('/about', [RootController::class, 'about'])->name('root.about');

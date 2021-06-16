@@ -34,6 +34,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{route('root.anime')}}">Top Anime Season</a></li>
+                        <li><a class="dropdown-item" href="{{route('root.top-couple')}}">Top Couple</a></li>
                         <li><a class="dropdown-item" href="{{route('root.news')}}">News</a></li>
                     </ul>
                 </li>

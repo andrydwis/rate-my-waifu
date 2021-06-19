@@ -19,7 +19,7 @@
                     <span class="badge bg-dark">{{$genre['name']}}</span>
                     @endforeach
                     <p class="card-text">Aired at {{\Carbon\Carbon::parse($anime['airing_start'])->format('M d, Y')}}</p>
-                    <div class="d-grid gap-2">
+                    <div class="d-grid">
                         <a href="{{$anime['url']}}" target="_blank" class="btn btn-dark"><i class="fas fa-eye"></i> Read More</a>
                     </div>
                 </div>

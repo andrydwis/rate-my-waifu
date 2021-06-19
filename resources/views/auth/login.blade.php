@@ -28,7 +28,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="d-grid gap-2">
+                        <div class="d-grid">
                             <button class="btn btn-dark" type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
                             <a href="{{route('register')}}" class="btn btn-outline-dark"><i class="fas fa-user-plus"></i> Register</a>
                         </div>

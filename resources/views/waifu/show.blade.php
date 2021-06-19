@@ -11,7 +11,7 @@
             <div class="card">
                 <img src="{{$waifu->photo}}" class="card-img-top" alt="">
                 <div class="card-body">
-                    <div class="d-grid gap-2">
+                    <div class="d-grid">
                         <a href="{{$waifu->photo}}" target="_blank" class="btn btn-dark"><i class="fas fa-arrow-down"></i> Download</a>
                     </div>
                 </div>

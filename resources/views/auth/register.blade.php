@@ -41,7 +41,7 @@
                             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="password_confirmation">
                             <label for="password_confirmation">Password Confirmation</label>
                         </div>
-                        <div class="d-grid gap-2">
+                        <div class="d-grid">
                             <button class="btn btn-dark" type="submit"><i class="fas fa-user-plus"></i> Register</button>
                             <a href="{{route('login')}}" class="btn btn-outline-dark"><i class="fas fa-sign-in-alt"></i> Login</a>
                         </div>

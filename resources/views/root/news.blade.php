@@ -15,7 +15,7 @@
                     <h5 class="card-title">{{$news['title']}}</h5>
                     <p class="card-text">{{\Illuminate\Support\Str::words($news['description'], 20)}}</p>
                     <p class="card-text">{{$news['author'] ?? 'Anonym'}} - {{\Carbon\Carbon::parse($news['publishedAt'])->diffForHumans()}}</p>
-                    <div class="d-grid gap-2">
+                    <div class="d-grid">
                         <a href="{{$news['url']}}" target="_blank" class="btn btn-dark"><i class="fas fa-eye"></i> Read More</a>
                     </div>
                 </div>

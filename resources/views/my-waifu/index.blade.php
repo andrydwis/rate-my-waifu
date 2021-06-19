@@ -19,7 +19,7 @@
                 </a>
                 <div class="card-body">
                     <h5 class="card-title text-dark text-center">{{$waifu->name}}</h5>
-                    <div class="d-grid gap-2">
+                    <div class="d-grid">
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-outline-dark"><i class="fas fa-heart"></i> {{$waifu->rates->where('type', 'love')->count()}}</button>
                             <button type="button" class="btn btn-outline-dark"><i class="fas fa-frown"></i> {{$waifu->rates->where('type', 'meh')->count()}}</button>
